@@ -4,10 +4,10 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "jekyll-reposter"
-  s.version     = "0.1"
+  s.version     = "0.1.1"
   s.authors     = ["Stefan Wienert"]
   s.email       = ["stefan.wienert@pludoni.de"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/zealot128/jekyll-reposter"
   s.summary     = %q{Reposting external feeds with jekyll}
   s.description = %q{Provides a interface for generating posts as a repost from external feeds. Tested with octopress.}
 

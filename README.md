@@ -17,7 +17,7 @@ gem "jekyll-reposter"
 create a ruby file in the jekyll root folder or subfolder like "tools"/"import"
 etc. and fill in:
 
-```ruby tools/notes.rb
+```ruby
 require "jekyll-reposter"
 
 reposter = Jekyll::Reposter.new "http://notes.it-jobs-und-stellen.de/notes.atom",
