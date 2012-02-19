@@ -36,8 +36,8 @@ module Jekyll
           "</ul>"   => "",
           "<ul>"    => "",
           "<pre>"   => "\n\n```ruby\n",
-          "</pre>"  => "```\n",
-          /\s+<li>/ => "* "
+          "</pre>"  => "```\n\n",
+          /[\t ]+<li>/ => "* "
         }
 
       @feed = Feedzirra::Feed.fetch_and_parse(feed)
@@ -77,7 +77,7 @@ module Jekyll
 
         tags = @options[:tags]
         file = <<DOC
-        #{meta.to_yaml}
+#{meta.to_yaml}
 categories: #{tags}
 ---
 #{content}
