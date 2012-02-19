@@ -19,7 +19,7 @@ module Jekyll
       @options = {
         :tags         => "[notes, external]",
         :dir          => "source/_posts",
-        :allowed_tags => %w[h2 ul li ol h3 h4 h5 code pre quote blockquote cite hr],
+        :allowed_tags => %w[h2 ul li ol h3 h4 h5 code pre quote blockquote cite hr a img strong b em i],
         :meta => {
           "comments" => true,
           "layout" => "post"
@@ -36,8 +36,17 @@ module Jekyll
           "</ul>"   => "",
           "<ul>"    => "",
           "<pre>"   => "\n\n```ruby\n",
-          "</pre>"  => "```\n\n",
-          /[\t ]+<li>/ => "* "
+          "</pre>"  => "\n```\n\n",
+          "<code>"   => "\n\n```ruby\n",
+          "</code>"  => "\n```\n\n",
+          /[\t ]*<li>/ => "* ",
+          /[\t ]*<h3>/ => "\n###",
+          /<\/h3>/ => "\n",
+          /[\t ]*<h2>/ => "\n##",
+          /<\/h2>/ => "\n",
+          "\t" => " ",
+
+
         }
 
       @feed = Feedzirra::Feed.fetch_and_parse(feed)
@@ -66,7 +75,8 @@ module Jekyll
       # stringex ignores "->", url error at webrick
       unless File.exists? filename
         main_part = entry.content || entry.summary
-        content =  Sanitize.clean main_part, :elements => @options[:allowed_tags]
+        content =  Sanitize.clean main_part, :elements => @options[:allowed_tags],
+           :attributes => {'a' => ['href', 'title'], "img" => ["alt","src"]}
 
         @replacings.each do |from,to|
           content.gsub! from, to
