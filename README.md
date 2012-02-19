@@ -39,6 +39,15 @@ The ```create_if``` directive decides if a blog posts is created. So if you
 want to filter the passed feed, like to only show specific authors posts, then
 here you can add any logic. In our case, we post all new items.
 
+To filter authors:
+
+```ruby
+reporter.create_if do |entry|
+  entry.author == "stefanw"
+end
+```
+
+
 
 After finshed, you can run that script like
 ```chmod +x repost-notes &&  ruby repost-notes```

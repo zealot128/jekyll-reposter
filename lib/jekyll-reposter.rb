@@ -64,7 +64,8 @@ module Jekyll
       # stringex ignores "->", url error at webrick
       filename.gsub!(/[<>\-\|`t ]+/, "-")
       unless File.exists? filename
-        content =  Sanitize.clean entry.content, :elements => @options[:allowed_tags]
+        main_part = entry.content || entry.summary
+        content =  Sanitize.clean main_part, :elements => @options[:allowed_tags]
 
         @replacings.each do |from,to|
           content.gsub! from, to
