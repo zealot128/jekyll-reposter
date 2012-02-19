@@ -41,9 +41,8 @@ here you can add any logic. In our case, we post all new items.
 
 
 After finshed, you can run that script like
-```bash
-ruby tools/notes.rb
-```
+```chmod +x repost-notes &&  ruby repost-notes```
+
 any time in your workflow, to add all new posts. Afterwards, check formatting and
 add categories if necessary.
 
