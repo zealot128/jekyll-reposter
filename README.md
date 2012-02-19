@@ -14,10 +14,14 @@ gem "jekyll-reposter"
 
 ## Usage
 
-create a ruby file in the jekyll root folder or subfolder like "tools"/"import"
-etc. and fill in:
+create a ruby file in your blog's root folder, or a subfolder like "tools", "import" etc. Here I use a executable in my root, called ```repost-notes```
+
 
 ```ruby
+#!/usr/bin/env ruby
+#
+require "bundler"
+Bundler.setup
 require "jekyll-reposter"
 
 reposter = Jekyll::Reposter.new "http://notes.it-jobs-und-stellen.de/notes.atom",
@@ -28,10 +32,10 @@ reposter.create_if do |entry|
 end
 ```
 
-This will create all blog posts, if not exists yet inside my
+This will create all blog posts, if not existing yet inside my
 ```source/_posts/notes.it-jobs-und-stellen.de`` folder.
 
-The ```create_if``` directive decideds if a blog posts is created. So if you
+The ```create_if``` directive decides if a blog posts is created. So if you
 want to filter the passed feed, like to only show specific authors posts, then
 here you can add any logic. In our case, we post all new items.
 
