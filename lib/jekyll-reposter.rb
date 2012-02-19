@@ -60,7 +60,7 @@ module Jekyll
 
     def create_entry(entry)
       date = entry.published.strftime("%Y-%m-%d")
-      filename = File.join @options[:dir], date + "-" + entry.title.to_url + ".markdown"
+      filename = File.join @dir, date + "-" + entry.title.to_url + ".markdown"
       unless File.exists? filename
         content =  Sanitize.clean entry.content, :elements => @options[:allowed_tags]
 
@@ -82,7 +82,7 @@ categories: #{tags}
 #{content}
 
 ---
-<i>Repost from <a href='#{entry.url}' rel='canonical'>#{@uri.host}</a></i>
+<i>Reposted from <a href='#{entry.url}' rel='canonical'>#{@uri.host}</a></i>
 DOC
 
       if !@options[:pretend]
@@ -91,7 +91,8 @@ DOC
           f.write file
         end
       else
-        puts "Would create #{filename} with content:\n------------------\n#{file}"
+        breakwater = (["="] * 20).join  + "\n"
+        puts "#{breakwater}Would create #{filename} with content:\n#{breakwater}#{file}"
       end
 
     end

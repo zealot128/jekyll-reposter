@@ -9,7 +9,7 @@ So i mungled together this gem, which uses Feedzirra as interface, so can handle
 add to Gemfile or install with gem install:
 
 ```ruby
-gem "jekyll_reposter"
+gem "jekyll-reposter"
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ create a ruby file in the jekyll root folder or subfolder like "tools"/"import"
 etc. and fill in:
 
 ```ruby tools/notes.rb
-require "jekyll_reposter"
+require "jekyll-reposter"
 
 reposter = Jekyll::Reposter.new "http://notes.it-jobs-und-stellen.de/notes.atom",
   :tags => "[notes, external]", :pretend => true
