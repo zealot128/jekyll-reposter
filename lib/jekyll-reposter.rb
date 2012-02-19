@@ -64,19 +64,18 @@ module Jekyll
       unless File.exists? filename
         content =  Sanitize.clean entry.content, :elements => @options[:allowed_tags]
 
-      end
-      @replacings.each do |from,to|
-        content.gsub! from, to
-      end
+        @replacings.each do |from,to|
+          content.gsub! from, to
+        end
 
-      meta = {
-              "title" => entry.title,
-              "date" => entry.published.strftime("%Y-%m-%d %H:%M"),
-      }.merge(@options[:meta])
+        meta = {
+          "title" => entry.title,
+          "date" => entry.published.strftime("%Y-%m-%d %H:%M"),
+        }.merge(@options[:meta])
 
-      tags = @options[:tags]
-      file = <<DOC
-#{meta.to_yaml}
+        tags = @options[:tags]
+        file = <<DOC
+        #{meta.to_yaml}
 categories: #{tags}
 ---
 #{content}
@@ -85,16 +84,17 @@ categories: #{tags}
 <i>Reposted from <a href='#{entry.url}' rel='canonical'>#{@uri.host}</a></i>
 DOC
 
-      if !@options[:pretend]
-        File.open filename, "w+" do |f|
-          puts "Writing #{filename}"
-          f.write file
+        if !@options[:pretend]
+          File.open filename, "w+" do |f|
+            puts "Writing #{filename}"
+            f.write file
+          end
+        else
+          breakwater = (["="] * 20).join  + "\n"
+          puts "#{breakwater}Would create #{filename} with content:\n#{breakwater}#{file}"
         end
-      else
-        breakwater = (["="] * 20).join  + "\n"
-        puts "#{breakwater}Would create #{filename} with content:\n#{breakwater}#{file}"
-      end
 
+      end
     end
   end
 end
