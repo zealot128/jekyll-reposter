@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "jekyll-reposter"
-  s.version     = "0.1.2"
+  s.version     = "0.1.3"
   s.authors     = ["Stefan Wienert"]
   s.email       = ["stefan.wienert@pludoni.de"]
   s.homepage    = "https://github.com/zealot128/jekyll-reposter"
