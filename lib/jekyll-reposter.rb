@@ -62,7 +62,7 @@ module Jekyll
       date = entry.published.strftime("%Y-%m-%d")
       filename = File.join @dir, date + "-" + entry.title.to_url + ".markdown"
       # stringex ignores "->", url error at webrick
-      filename.gsub!(/[<>\-]+/, "-")
+      filename.gsub!(/[<>\-\|`t ]+/, "-")
       unless File.exists? filename
         content =  Sanitize.clean entry.content, :elements => @options[:allowed_tags]
 
